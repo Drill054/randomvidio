@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
+<!-- saved from url=(0072)file:///C:/Users/USER/Downloads/platform-tools-latest-windows/admin.html -->
+<html lang="id"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Halaman Admin</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="./admin_files/css2" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -93,14 +93,12 @@
 
     <!-- Form untuk menambahkan link -->
     <form id="addLinkForm">
-      <input type="text" id="linkName" placeholder="Nama Link" required>
-      <input type="url" id="linkUrl" placeholder="URL Link" required>
+      <input type="text" id="linkName" placeholder="Nama Link" required="">
+      <input type="url" id="linkUrl" placeholder="URL Link" required="">
       <button type="submit">Tambahkan Link</button>
     </form>
 
-    <div class="link-list" id="linkList">
-      <!-- Daftar link yang sudah ditambahkan akan muncul di sini -->
-    </div>
+    <div class="link-list" id="linkList"></div>
   </div>
 
   <script>
@@ -160,5 +158,6 @@
     document.addEventListener('DOMContentLoaded', updateLinkList);
   </script>
 
-</body>
-</html>
+
+
+</body></html>
