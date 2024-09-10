@@ -27,20 +27,36 @@
       padding: 30px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
       border-radius: 10px;
+      text-align: center;
     }
     h1 {
-      text-align: center;
       font-weight: 600;
       color: #2c3e50;
       margin-bottom: 20px;
     }
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-    input, button {
+    button {
       padding: 12px;
+      margin: 10px;
+      border: none;
+      border-radius: 6px;
+      background-color: #3498db;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+    .admin-login, .member-login {
+      margin-top: 20px;
+    }
+    .admin-login {
+      display: none;
+    }
+    input {
+      padding: 12px;
+      margin-top: 10px;
       border: 1px solid #ddd;
       border-radius: 6px;
       font-size: 16px;
@@ -49,59 +65,10 @@
       outline: none;
       border-color: #3498db;
     }
-    button {
-      background-color: #3498db;
-      color: white;
-      border: none;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    button:hover {
-      background-color: #2980b9;
-    }
-    .logout-btn {
-      background-color: #e74c3c;
+    .error-message {
+      display: none;
+      color: red;
       margin-top: 10px;
-    }
-    .logout-btn:hover {
-      background-color: #c0392b;
-    }
-    .link-list {
-      margin-top: 20px;
-    }
-    .link-item {
-      margin: 10px 0;
-      padding: 10px;
-      background-color: #ecf0f1;
-      border-radius: 6px;
-      transition: transform 0.2s;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .link-item a {
-      text-decoration: none;
-      color: #2980b9;
-      font-weight: 500;
-    }
-    .link-item:hover {
-      transform: scale(1.02);
-    }
-    .delete-btn {
-      background-color: #e74c3c;
-      color: white;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      display: none; /* Default hidden */
-    }
-    .delete-btn.show {
-      display: inline-block;
-    }
-    .number {
-      margin-right: 10px;
       font-weight: 600;
     }
   </style>
@@ -109,173 +76,51 @@
 <body>
 
   <div class="container">
-    <h1>🅺🆄🅼🅿🆄🅻🅰🅽 🅻🅸🅽🅺
-      ℝ𝕒𝕟𝕕𝕠𝕞𝕍𝕚𝕕𝕚𝕠🌹
-    </h1>
+    <h1>𝐒𝐞𝐥𝐚𝐦𝐚𝐭 𝐃𝐚𝐭𝐚𝐧𝐠 𝐝𝐢 𝐊𝐮𝐦𝐩𝐮𝐥𝐚𝐧 𝐋𝐢𝐧𝐤 𝐑𝐚𝐧𝐝𝐨𝐦𝐕𝐢𝐝𝐢𝐨🌹</h1>
 
-    <!-- Form Login untuk Admin -->
-    <form id="loginForm">
-      <input type="password" id="adminPassword" placeholder="Masukan Password" required>
-      <button type="submit">Login</button>
-    </form>
+    <button id="memberButton">Masuk sebagai Member</button>
+    <button id="adminButton">Login sebagai Admin</button>
 
-    <!-- Form Tambah Link (Hanya muncul setelah login) -->
-    <form class="add-link-form" style="display: none;">
-      <input type="text" id="linkName" placeholder="Nama Link" required>
-      <input type="url" id="linkUrl" placeholder="URL Link" required>
-      <button type="submit">Tambahkan Link</button>
-    </form>
-
-    <!-- Tombol Logout (Hanya muncul setelah login) -->
-    <button class="logout-btn" id="logoutBtn" style="display: none;">Logout</button>
-
-    <div class="link-list" id="linkList">
-      <!-- Link akan ditampilkan di sini -->
+    <div class="admin-login" id="adminLogin">
+      <form id="adminLoginForm">
+        <input type="password" id="adminPassword" placeholder="Masukan Password Admin" required>
+        <button type="submit">Login</button>
+      </form>
+      <div id="errorMessage" class="error-message">Password salah!</div>
     </div>
   </div>
 
   <script>
-    const adminPassword = "admin123";
-    const loginForm = document.getElementById('loginForm');
-    const addLinkForm = document.querySelector('.add-link-form');
-    const linkList = document.getElementById('linkList');
-    const logoutBtn = document.getElementById('logoutBtn');
+    const adminButton = document.getElementById('adminButton');
+    const memberButton = document.getElementById('memberButton');
+    const adminLogin = document.getElementById('adminLogin');
+    const adminLoginForm = document.getElementById('adminLoginForm');
+    const errorMessage = document.getElementById('errorMessage');
 
-    // Fungsi untuk memeriksa status login dari sessionStorage
-    function checkLoginStatus() {
-      return sessionStorage.getItem('loggedIn') === 'true';
-    }
+    const adminPassword = "admin123"; // Password Admin yang diset
+    const memberPageUrl = "member.html"; // Halaman member setelah masuk
+    const adminPageUrl = "admin.html"; // Halaman admin setelah login
 
-    // Fungsi untuk mengatur tampilan berdasarkan status login
-    function updateUIBasedOnLogin() {
-      if (checkLoginStatus()) {
-        addLinkForm.style.display = 'block';
-        loginForm.style.display = 'none';
-        logoutBtn.style.display = 'block';
-        showDeleteButtons(true);
-      } else {
-        addLinkForm.style.display = 'none';
-        loginForm.style.display = 'block';
-        logoutBtn.style.display = 'none';
-        showDeleteButtons(false);
-      }
-    }
+    // Ketika tombol "Login sebagai Admin" diklik
+    adminButton.addEventListener('click', function() {
+      adminLogin.style.display = 'block'; // Tampilkan form login admin
+    });
 
-    // Fungsi untuk menampilkan atau menyembunyikan tombol hapus
-    function showDeleteButtons(show) {
-      const deleteButtons = document.querySelectorAll('.delete-btn');
-      deleteButtons.forEach(btn => {
-        if (show) {
-          btn.classList.add('show');
-        } else {
-          btn.classList.remove('show');
-        }
-      });
-    }
+    // Ketika tombol "Masuk sebagai Member" diklik
+    memberButton.addEventListener('click', function() {
+      window.location.href = memberPageUrl; // Arahkan ke halaman member
+    });
 
-    // Fungsi untuk membuat elemen link dengan nomor urut dan tombol hapus
-    function createLinkItem(name, url, index) {
-      const newLinkItem = document.createElement('div');
-      newLinkItem.classList.add('link-item');
-
-      // Bagian kiri: Nomor dan Link
-      const leftDiv = document.createElement('div');
-      leftDiv.style.display = 'flex';
-      leftDiv.style.alignItems = 'center';
-
-      const numberSpan = document.createElement('span');
-      numberSpan.classList.add('number');
-      numberSpan.textContent = index + '.';
-
-      const linkAnchor = document.createElement('a');
-      linkAnchor.href = url;
-      linkAnchor.target = '_blank';
-      linkAnchor.textContent = name;
-
-      leftDiv.appendChild(numberSpan);
-      leftDiv.appendChild(linkAnchor);
-
-      // Bagian kanan: Tombol Hapus
-      const deleteButton = document.createElement('button');
-      deleteButton.classList.add('delete-btn');
-      deleteButton.textContent = 'Hapus';
-      deleteButton.onclick = function () {
-        if (confirm(`Apakah Anda yakin ingin menghapus link "${name}"?`)) {
-          removeLinkFromStorage(name, url);
-          updateLinkList();
-        }
-      };
-
-      newLinkItem.appendChild(leftDiv);
-      newLinkItem.appendChild(deleteButton);
-      linkList.appendChild(newLinkItem);
-
-      // Tampilkan tombol hapus jika admin sudah login
-      if (checkLoginStatus()) {
-        deleteButton.classList.add('show');
-      }
-    }
-
-    // Fungsi untuk menghapus link dari Local Storage
-    function removeLinkFromStorage(name, url) {
-      let storedLinks = JSON.parse(localStorage.getItem('links')) || [];
-      storedLinks = storedLinks.filter(link => !(link.name === name && link.url === url));
-      localStorage.setItem('links', JSON.stringify(storedLinks));
-    }
-
-    // Fungsi untuk mengupdate tampilan list link setelah ada penghapusan atau penambahan
-    function updateLinkList() {
-      const storedLinks = JSON.parse(localStorage.getItem('links')) || [];
-      linkList.innerHTML = ''; // Bersihkan list link yang ada
-      storedLinks.forEach((link, index) => {
-        createLinkItem(link.name, link.url, index);
-      });
-    }
-
-    // Handle login
-    loginForm.addEventListener('submit', function(e) {
+    // Ketika form login admin disubmit
+    adminLoginForm.addEventListener('submit', function(e) {
       e.preventDefault();
       const enteredPassword = document.getElementById('adminPassword').value;
+
       if (enteredPassword === adminPassword) {
-        sessionStorage.setItem('loggedIn', 'true');
-        alert("Login berhasil!");
-        updateUIBasedOnLogin();
+        window.location.href = adminPageUrl; // Arahkan ke halaman admin jika password benar
       } else {
-        alert("Password salah!");
+        errorMessage.style.display = 'block'; // Tampilkan pesan kesalahan jika password salah
       }
-      loginForm.reset();
-    });
-
-    // Handle logout
-    logoutBtn.addEventListener('click', function() {
-      sessionStorage.removeItem('loggedIn');
-      alert("Anda telah logout.");
-      updateUIBasedOnLogin();
-    });
-
-    // Handle penambahan link
-    addLinkForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      const linkName = document.getElementById('linkName').value.trim();
-      const linkUrl = document.getElementById('linkUrl').value.trim();
-
-      if (linkName && linkUrl) {
-        const storedLinks = JSON.parse(localStorage.getItem('links')) || [];
-        storedLinks.push({ name: linkName, url: linkUrl });
-        localStorage.setItem('links', JSON.stringify(storedLinks));
-
-        updateLinkList();
-
-        // Reset form setelah submit
-        addLinkForm.reset();
-      }
-    });
-
-    // Inisialisasi tampilan saat halaman dimuat
-    document.addEventListener("DOMContentLoaded", function() {
-      updateUIBasedOnLogin();
-      updateLinkList();
     });
   </script>
 
