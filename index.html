@@ -69,7 +69,7 @@
     // Fungsi untuk mengambil data link dari file JSON
     async function updateLinkList() {
       try {
-        const response = await fetch('https://raw.githubusercontent.com/username/repository/main/links.json'); // Ganti dengan URL file JSON Anda
+        const response = await fetch('https://raw.githubusercontent.com/randomvidio/repository/main/links.json '); // Ganti dengan URL file JSON Anda
         const storedLinks = await response.json();
         
         linkList.innerHTML = ''; // Bersihkan daftar link
