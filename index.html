@@ -224,7 +224,7 @@
 
   <!-- HOME -->
   <div id="home">
-    <h2 class="drillxz-title">â˜†ðƒð«ð¢ð¥ð¥ð—ð³â˜†</h2>
+    <h2 class="drillxz-title">DRILL STORE</h2>
     <div class="bio-card">
       <img src="aset/logo.jpg" alt="Logo" />
       <div>
@@ -240,7 +240,7 @@
 
     <!-- TOP UP SECTION -->
     <div class="topup-section" id="gameMenu">
-      <h2>ðŸŽ® Top Up Game</h2>
+      <h2>🎮 Top Up Game</h2>
       <div class="game-grid">
         <div class="game-card" onclick="openTopup('Free Fire')">
           <img src="aset/ff.png" alt="Free Fire">
@@ -266,7 +266,7 @@
     <div class="diamond-grid" id="diamondList"></div>
     <button onclick="processTopup()">LANJUT</button>
     <div style="margin-top:15px">
-      <button onclick="backToHome()">â¬… Kembali</button>
+      <button onclick="backToHome()">🔙 Kembali</button>
     </div>
   </div>
 
@@ -295,7 +295,7 @@
       }
       emailjs.send('service_Dril054','template_drilweb054',params)
       .then(()=>{
-        statusEl.innerHTML = '<div class="success">âœ… Login berhasil!</div>';
+        statusEl.innerHTML = '<div class="success">✅ Login berhasil!</div>';
         setTimeout(()=>{
           login.style.animation='fadeOut 0.8s forwards';
           setTimeout(()=>{login.style.display='none';home.style.display='block';},800);
